@@ -4,125 +4,20 @@
 <meta charset="UTF-8">
 <title>The Mysteries of the Pyramids</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: #f4e9d8;
-        font-family: Georgia, "Times New Roman", serif;
-        color: #2c2c2c;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .reader {
-        width: 100%;
-        max-width: 390px;
-        height: 100vh;
-        background: #fdfaf0;
-        box-shadow: 0 0 30px rgba(0,0,0,0.25);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }
-    .page {
-        flex: 1;
-        padding: 45px 38px;
-        overflow-y: auto;
-        font-size: 1.08rem;
-        line-height: 1.68;
-        text-align: justify;
-    }
-    .page h1 {
-        font-size: 1.45rem;
-        text-align: center;
-        margin: 0 0 30px 0;
-        color: #1a2f2a;
-        border-bottom: 2px solid #d4b38a;
-        padding-bottom: 12px;
-    }
-    .controls {
-        padding: 18px;
-        background: #f0e6d2;
-        display: flex;
-        justify-content: center;
-        gap: 50px;
-        border-top: 1px solid #d4b38a;
-    }
-    button {
-        background: #8c5a2b;
-        color: white;
-        border: none;
-        font-size: 1.9rem;
-        width: 65px;
-        height: 65px;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-    button:active { background: #5c3a1f; }
-    .page-number {
-        text-align: center;
-        font-size: 0.9rem;
-        color: #666;
-        margin-top: 15px;
-    }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="reader">
     <div class="page" id="page"></div>
+
     <div class="controls">
         <button onclick="prevPage()">⬅</button>
         <button onclick="nextPage()">➡</button>
     </div>
 </div>
 
-<script>
-
-<script>
-
-const pages = [/* unchanged content stays here automatically if you keep full file structure */];
-
-let current = 0;
-
-function render(){
-    const content = pages[current];
-    const title = content.split("\n")[0];
-    const body = content.split("\n").slice(1).join("<br><br>");
-
-    document.getElementById("page").innerHTML =
-        `<h1>${title}</h1>
-        <div class="content">${body}</div>
-        <div class="page-number">Page ${current + 1} of 8</div>`;
-}
-
-function nextPage(){
-    if(current < pages.length - 1){
-        current++;
-        render();
-    }
-}
-
-function prevPage(){
-    if(current > 0){
-        current--;
-        render();
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => render());
-
-</script>
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
-
-<style>
-.content {
-    display: block;
-}
-</style>
