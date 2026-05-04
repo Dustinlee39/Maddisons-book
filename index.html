@@ -179,12 +179,12 @@ Thanks for reading my 8-chapter book! I hope you got as excited about the underg
 
 let current = 0;
 
-function render(){
-    const content = pages[current];
-    const title = content.split("\n")[0];
-    const body = content.split("\n").slice(1).join("<br><br>");
-
     document.getElementById("page").innerHTML = `<h1>${title}</h1>${body}<div class="page-number">Page ${current + 1} of 8</div>`;
+document.getElementById("page").innerHTML = `
+<h1>${title}</h1>
+<div class="content">${body}</div>
+<div class="page-number">Page ${current + 1} of 8</div>
+`;
 }
 <!DOCTYPE html>
 <html>
@@ -381,7 +381,7 @@ function prevPage(){
     if(current > 0){ current--; render(); }
 }
 
-document.addEventListener("keydown", e => {
+window.addEventListener("load", () => { render(); document.addEventListener("keydown", e => { if(e.key === "ArrowRight") nextPage(); if(e.key === "ArrowLeft") prevPage(); }); });
     if(e.key === "ArrowRight") nextPage();
     if(e.key === "ArrowLeft") prevPage();
 });
@@ -392,3 +392,9 @@ render();
 
 </body>
 </html>
+
+<style>
+.content {
+    display: block;
+}
+</style>
