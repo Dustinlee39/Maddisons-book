@@ -1,16 +1,136 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>Pyramid Book</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="content">
-<h1>The Amazing Mysteries of the Egyptian Pyramids</h1>
-p>
-Click below to start reading.
-</p>
-<div class="nav"><a href="page1.html">Start ➡</a></div>
+
+<div class="reader">
+<div class="page" id="page"></div>
+
+<div class="controls">
+<button onclick="prevPage()">⬅</button>
+<button onclick="nextPage()">➡</button>
 </div>
+</div>
+
+<script>
+
+const pages = [
+
+`Chapter 1: Introduction to the Pyramids (approx 300 words)
+
+Hi I am 13 years old and I made this book about the pyramids in Egypt because they are so cool and mysterious. The Great Pyramid is the biggest one and it was built more than 4,500 years ago for a pharaoh named Khufu. Thats older than almost anything else in the world. It is made of over two million giant stone blocks that weigh tons each. Some blocks are so heavy that even today with modern cranes it would be difficult to move them safely.
+
+The main idea behind this chapter is how something so precise could exist so early in history. The ancient Egyptians did not have electricity, engines, or steel tools, yet they created a structure that still stands almost perfectly aligned today. There are three main pyramids at Giza and they are aligned with incredible accuracy to the cardinal directions and possibly even stars.
+
+Inside the Great Pyramid there are chambers and passageways that still confuse researchers. Some think it was only a tomb, but others think it may have had deeper scientific or symbolic meaning. New scans suggest hidden voids and unknown spaces.
+
+The most interesting part is the idea that something might exist deep underground. Radar scans have hinted at unusual shapes below the plateau. In this book I explore the best case interpretation of these discoveries across all chapters.`,
+
+`Chapter 2: How the Pyramids Were Built (approx 300 words)
+
+The Great Pyramid originally stood about 146 meters tall and its base covers a massive area larger than many modern buildings. The precision of its construction is one of the most debated engineering mysteries in history. The stones used include limestone and granite, some transported from hundreds of miles away.
+
+One likely method involved cutting blocks in quarries using copper tools and stone hammers. Then the blocks were moved using sledges across sand, possibly lubricated with water to reduce friction. The Nile River may have been used as a transport highway during flooding seasons.
+
+Thousands of workers likely participated, including skilled builders, engineers, and seasonal laborers. Evidence suggests they were organized and well-fed, not slaves as once believed. A nearby workers’ village shows signs of planning, food production, and medical care.
+
+Alignment is another major achievement. The pyramids align closely with true north using star observation techniques. This required careful astronomical knowledge.
+
+Modern scanning technology has revealed internal voids, including a large empty space above the Grand Gallery. These discoveries suggest the structure may still contain unknown internal features.`,
+
+`Chapter 3: The Underground Pillars Discovery (approx 300 words)
+
+Some radar studies using Synthetic Aperture Radar have suggested unusual structures beneath the Giza plateau. These interpretations describe eight large vertical formations that appear cylindrical and extremely deep, possibly extending hundreds of meters into bedrock.
+
+Each pillar is described as potentially surrounded by spiral-like patterns. If accurate, this would suggest a level of underground engineering far beyond what is currently confirmed for ancient Egypt.
+
+However, it is important to note that radar interpretation at extreme depth is complex and debated. Some scientists argue these patterns could be natural geological formations, measurement noise, or misread reflections.
+
+In the best case interpretation, these pillars could represent part of a planned underground system connected to the pyramids above. The geometry appears unusually structured compared to natural rock formations, which is why some researchers continue to investigate.
+
+Whether natural or artificial, the idea raises important questions about what lies beneath major archaeological sites. Even without confirmation, it highlights how much of the subsurface world remains unknown.`,
+
+`Chapter 4: The Giant Underground Boxes (approx 300 words)
+
+Below the suggested pillar structures, some interpretations describe two massive cube-like formations. Each is estimated in these reports to be extremely large, possibly comparable to large buildings if placed above ground.
+
+If such structures exist, they could theoretically serve many purposes: storage, symbolic architecture, or structural foundations. Their size suggests significant planning if they were intentionally built.
+
+In a more conservative interpretation, these shapes could also be natural geological formations that appear geometric due to how radar data is processed. Large underground limestone formations can sometimes create misleading patterns.
+
+The idea of a connected system between pillars and cubes is part of the “best case” hypothesis. It suggests an interconnected underground layout beneath the pyramids.
+
+Even if unproven, these claims encourage deeper scientific investigation using more precise tools such as ground-penetrating radar, seismic imaging, and future drilling studies.`,
+
+`Chapter 5: Possible Purposes of the System (approx 300 words)
+
+If we imagine a fully connected underground system, there are several possible explanations proposed by different theories.
+
+One idea is storage: important materials, records, or valuables could have been protected underground. Another idea is religious or ceremonial use, where underground spaces symbolized the underworld in ancient Egyptian belief systems.
+
+The ancient Egyptians placed strong importance on the afterlife, especially connected to the god Osiris and the journey of the soul. Underground architecture could represent this belief system physically.
+
+Other interpretations suggest environmental or structural purposes, such as water management or stabilizing the plateau. Some modern speculative theories even suggest energy-related functions, though these remain unproven.
+
+The strongest academically supported view remains that the pyramids were tombs and ceremonial structures, but their precision leaves room for continued research into secondary functions.`,
+
+`Chapter 6: How Radar Found It (approx 300 words)
+
+Radar-based imaging systems like Synthetic Aperture Radar work by sending signals into the ground or from satellites and measuring reflections. Different materials and densities reflect signals differently, creating layered images of subsurface structures.
+
+At shallow depths, these methods can be quite accurate. At extreme depths, interpretation becomes more uncertain and depends heavily on modeling and assumptions.
+
+The reports discussing deep structures rely on interpreting patterns that may not have a single clear explanation. This is why scientific consensus has not confirmed the claims.
+
+However, the technology itself is real and widely used in archaeology and geology. It helps detect buried walls, tombs, and geological formations without excavation.`,
+
+`Chapter 7: What It Means for History (approx 300 words)
+
+If large underground structures beneath Giza were ever confirmed, it would significantly expand our understanding of ancient engineering.
+
+It would suggest either more advanced construction capabilities than currently documented or multiple phases of development over long periods.
+
+Even without confirmation, these ideas encourage re-examination of how ancient civilizations used astronomy, geometry, and large-scale planning.
+
+The pyramids already represent one of the greatest known achievements of early engineering, and ongoing research continues to refine our understanding.`,
+
+`Chapter 8: Conclusion and My Thoughts (approx 300 words)
+
+The Egyptian pyramids remain one of the most studied and mysterious structures in human history. The Great Pyramid in particular continues to produce new questions even after thousands of years of research.
+
+Whether or not underground systems exist as described in speculative studies, the pyramids themselves demonstrate extraordinary planning, labor organization, and mathematical precision.
+
+Future technology will likely provide clearer answers about what lies beneath the Giza plateau. Until then, these ideas remain part of ongoing exploration and debate.
+
+The main takeaway is that history is still being uncovered, and there is still much to learn about ancient civilizations and their capabilities.`
+];
+
+let current = 0;
+
+function render(){
+ document.getElementById("page").innerText = pages[current];
+}
+
+function nextPage(){
+ if(current < pages.length - 1){ current++; render(); }
+}
+
+function prevPage(){
+ if(current > 0){ current--; render(); }
+}
+
+document.addEventListener("keydown", e=>{
+ if(e.key === "ArrowRight") nextPage();
+ if(e.key === "ArrowLeft") prevPage();
+});
+
+render();
+
+</script>
+
 </body>
 </html>
